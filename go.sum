@@ -1,0 +1,10 @@
+github.com/gorcon/rcon v1.3.4 h1:TExNhWI2mJlqpCg49vajUgznvEZbEzQWKujY1Sy+/AY=
+github.com/gorcon/rcon v1.3.4/go.mod h1:46+oSXgPwlRAkcAPStkNnIL1dlcxJweKVNWshy3hDJI=
+github.com/jszwec/csvutil v1.9.0 h1:iTmq9G1P0e+AUq/MkFg6tetJ+1BH3fOX8Xi0RAcwiGc=
+github.com/jszwec/csvutil v1.9.0/go.mod h1:/E4ONrmGkwmWsk9ae9jpXnv9QT8pLHEPcCirMFhxG9I=
+github.com/mackerelio/go-mackerel-plugin v0.1.4 h1:+kyatPMFSoghKd7o9oge1FnDrVknFbiwz5VWdFIgsqY=
+github.com/mackerelio/go-mackerel-plugin v0.1.4/go.mod h1:bau0bZbR1JXiCwDIg880djjttZ/0j885v5k0n+jAS/I=
+github.com/mackerelio/golib v1.2.1 h1:SDcDn6Jw3p9bi1N0bg1Z/ilG5qcBB23qL8xNwrU0gg4=
+github.com/mackerelio/golib v1.2.1/go.mod h1:b8ZaapsHGH1FlEJlCqfD98CqafLeyMevyATDlID2BsM=
+golang.org/x/text v0.3.7 h1:olpwvP2KacW1ZWvsR7uQhoyTYvKAupfQrRGBFM352Gk=
+golang.org/x/text v0.3.7/go.mod h1:u+2+/6zg+i71rQMx5EYifcz6MCKuco9NR6JIITiCfzQ=

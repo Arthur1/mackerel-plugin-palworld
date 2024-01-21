@@ -1,0 +1,10 @@
+name: on push version tag
+
+on:
+  push:
+    tags:
+      - "v*"
+
+jobs:
+  release:
+    uses: ./.github/workflows/wf-release.yml
