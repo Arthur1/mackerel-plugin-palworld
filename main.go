@@ -2,7 +2,9 @@ package main
 
 import (
 	"flag"
+	"log"
 	"net"
+	"time"
 
 	"github.com/gorcon/rcon"
 	"github.com/jszwec/csvutil"
@@ -11,12 +13,21 @@ import (
 
 func main() {
 	plugin := new(Plugin)
+	var (
+		timeoutStr string
+		err        error
+	)
 
 	flag.StringVar(&plugin.host, "host", "localhost", "hostname")
 	flag.StringVar(&plugin.port, "port", "25575", "RCON port")
 	flag.StringVar(&plugin.password, "password", "", "administrator passowrd")
+	flag.StringVar(&timeoutStr, "timeout", "5s", "dial timeout seconds")
 	flag.Parse()
 
+	plugin.timeout, err = time.ParseDuration(timeoutStr)
+	if err != nil {
+		log.Fatalln(err)
+	}
 	mackerelPlugin := mp.NewMackerelPlugin(plugin)
 	mackerelPlugin.Run()
 }
@@ -25,6 +36,7 @@ type Plugin struct {
 	host     string
 	port     string
 	password string
+	timeout  time.Duration
 }
 
 var _ mp.PluginWithPrefix = new(Plugin)
@@ -37,7 +49,7 @@ type Player struct {
 
 func (p *Plugin) FetchMetrics() (map[string]float64, error) {
 	address := net.JoinHostPort(p.host, p.port)
-	conn, err := rcon.Dial(address, p.password)
+	conn, err := rcon.Dial(address, p.password, rcon.SetDialTimeout(p.timeout))
 	if err != nil {
 		return nil, err
 	}
