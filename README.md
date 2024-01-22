@@ -29,9 +29,11 @@ command = ["/opt/mackerel-agent/plugins/bin/mackerel-plugin-palworld", "-passwor
 
 ```
   -host string
-        hostname (default "localhost")
+    	hostname (default "localhost")
   -password string
-        administrator passowrd
+    	administrator passowrd
   -port string
-        RCON port (default "25575")
+    	RCON port (default "25575")
+  -timeout string
+    	dial timeout seconds (default "5s")
 ```
