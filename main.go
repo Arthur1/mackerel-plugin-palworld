@@ -48,14 +48,7 @@ type Player struct {
 }
 
 func (p *Plugin) FetchMetrics() (map[string]float64, error) {
-	address := net.JoinHostPort(p.host, p.port)
-	conn, err := rcon.Dial(address, p.password, rcon.SetDialTimeout(p.timeout))
-	if err != nil {
-		return nil, err
-	}
-	defer conn.Close()
-
-	response, err := conn.Execute("ShowPlayers")
+	response, err := p.getShowPlayers()
 	if err != nil {
 		return nil, err
 	}
@@ -68,6 +61,20 @@ func (p *Plugin) FetchMetrics() (map[string]float64, error) {
 	// why is the key not "players.num"?
 	metrics["num"] = float64(len(players))
 	return metrics, nil
+}
+
+func (p *Plugin) getShowPlayers() (string, error) {
+	address := net.JoinHostPort(p.host, p.port)
+	conn, err := rcon.Dial(address, p.password, rcon.SetDialTimeout(p.timeout))
+	if err != nil {
+		return "", err
+	}
+	defer conn.Close()
+
+	// palworld's rcon server sometimes times out accidentally
+	// nolint
+	response, _ := conn.Execute("ShowPlayers")
+	return response, nil
 }
 
 func (p *Plugin) GraphDefinition() map[string]mp.Graphs {
