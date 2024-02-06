@@ -4,6 +4,7 @@ import (
 	"flag"
 	"log"
 	"net"
+	"strings"
 	"time"
 
 	"github.com/gorcon/rcon"
@@ -74,6 +75,7 @@ func (p *Plugin) getShowPlayers() (string, error) {
 	// palworld's rcon server sometimes times out accidentally
 	// nolint
 	response, _ := conn.Execute("ShowPlayers")
+	response = strings.ReplaceAll(response, "\x00", "")
 	return response, nil
 }
 
